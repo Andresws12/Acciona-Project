@@ -2,13 +2,10 @@ const path = require("path");
 
 module.exports = {
   transpileDependencies: ["d3-scale", "d3-array", "cash-dom"],
-  devServer: {
-    port: 18000,
-  },
 
   pwa: {
-    name: "OpenSlot studio",
-    short_name: "OpenSlot",
+    name: "Acciona",
+    short_name: "Acciona",
     start_url: ".",
     themeColor: "#303841",
     msTileColor: "#ff006e",

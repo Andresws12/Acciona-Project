@@ -1,2 +1,2 @@
-export { UserResponse } from "./UserResponse";
-export { User } from "./User";
+export { UserResponse } from './UserResponse';
+export { User } from './User';

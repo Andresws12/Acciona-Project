@@ -1,60 +1,68 @@
-import { Actions } from "vuex-smart-module";
+import { Actions } from 'vuex-smart-module';
 
-import MainMutations from "./MainMutations";
-import MainGetters from "./MainGetters";
-import MainState from "./MainState";
+import MainMutations from './MainMutations';
+import MainGetters from './MainGetters';
+import MainState from './MainState';
 
-import { UserResponse, User } from "../../webservices/models";
+import { UserResponse, User } from '../../webservices/models';
 
-import { getUsers } from "@/webservices/UsersWebservice";
+import { getUsers } from '@/webservices/UsersWebservice';
 
 export default class MainActions extends Actions<
-  MainState,
-  MainGetters,
-  MainMutations,
-  MainActions
+    MainState,
+    MainGetters,
+    MainMutations,
+    MainActions
 > {
-  // User Actions
-  public async getUsers(): Promise<void> {
-    try {
-      this.commit("startLoading", null);
+    // User Actions
+    public async getUsers(): Promise<void> {
+        try {
+            this.commit('startLoading', null);
 
-      const users: UserResponse = await getUsers(this.getters.query);
+            const users: UserResponse = await getUsers(this.getters.query);
 
-      this.commit("setUsers", users);
-    } finally {
-      this.commit("stopLoading", null);
+            this.commit('setUsers', users);
+        } finally {
+            this.commit('stopLoading', null);
+        }
     }
-  }
 
-  public async changeGender(gender: string): Promise<void> {
-    this.commit("setGender", gender);
+    public async changeGender(gender: string): Promise<void> {
+        this.commit('setGender', gender);
 
-    await this.dispatch("getUsers", null);
-  }
+        await this.dispatch('getUsers', null);
+    }
 
-  public async changeNationality(nationality: string): Promise<void> {
-    this.commit("setNationality", nationality);
+    public async changeNationality(nationality: string): Promise<void> {
+        this.commit('setNationality', nationality);
 
-    await this.dispatch("getUsers", null);
-  }
+        await this.dispatch('getUsers', null);
+    }
 
-  public async changeAge(age: number): Promise<void> {
-    this.commit("setAge", age);
+    public async changeAge(age: number): Promise<void> {
+        this.commit('setAge', age);
 
-    await this.dispatch("getUsers", null);
-  }
+        await this.dispatch('getUsers', null);
+    }
 
-  public async changeCurrentUser(user: User): Promise<void> {
-    this.commit("setCurrentUser", user);
-  }
+    public async changeCurrentUser(user: User): Promise<void> {
+        this.commit('setCurrentUser', user);
+    }
 
-  // Translate Actions
-  public changeLanguajeToSpanish(): void {
-    this.commit("changeLanguajeToSpanish");
-  }
+    public async updateFavUsers(user: User): Promise<void> {
+        if (this.state.favUsers.find(favuser => favuser.email === user.email)) {
+            this.commit('removeFavUser', user);
+        } else {
+            this.commit('addFavUser', user);
+        }
+    }
 
-  public changeLanguajeToEnglish(): void {
-    this.commit("changeLanguajeToEnglish");
-  }
+    // Translate Actions
+    public changeLanguajeToSpanish(): void {
+        this.commit('changeLanguajeToSpanish');
+    }
+
+    public changeLanguajeToEnglish(): void {
+        this.commit('changeLanguajeToEnglish');
+    }
 }

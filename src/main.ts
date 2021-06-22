@@ -1,47 +1,46 @@
-import Vue from "vue";
-import App from "./App.vue";
-import router from "./router";
-import { store } from "./store";
-import Router from "vue-router";
+import Vue from 'vue';
+import App from './App.vue';
+import router from './router';
+import { store } from './store';
+import Router from 'vue-router';
 
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
+import VueBlobJsonCsv from 'vue-blob-json-csv';
+
 library.add(fab, fas, far);
 
-import "./styles/main.scss";
+import VueLayers from 'vuelayers';
 
-import axios from "axios";
-import Buefy from "buefy";
-import i18n from "@/localization/localization";
+import './styles/main.scss';
 
-import "./registerServiceWorker";
+import axios from 'axios';
+import Buefy from 'buefy';
+import i18n from '@/localization/localization';
 
-import * as VueGoogleMaps from "vue2-google-maps";
-
-Vue.use(VueGoogleMaps, {
-  load: {
-    key: "",
-  },
-});
+import './registerServiceWorker';
 
 Vue.config.productionTip = false;
 
-axios.defaults.headers.post["Content-Type"] = "application/json";
+axios.defaults.headers.post['Content-Type'] = 'application/json';
 
+Vue.use(VueBlobJsonCsv);
+Vue.use(VueLayers);
 Vue.use(Router);
 Vue.use(Buefy, {
-  defaultIconComponent: "font-awesome-icon",
-  defaultIconPack: "fa",
+    defaultIconComponent: 'font-awesome-icon',
+    defaultIconPack: 'fa',
 });
 
-Vue.component("font-awesome-icon", FontAwesomeIcon);
+Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 new Vue({
-  router,
-  store,
-  i18n,
-  render: (h) => h(App),
-}).$mount("#app");
+    router,
+    store,
+    i18n,
+    render: h => h(App),
+}).$mount('#app');

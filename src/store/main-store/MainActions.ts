@@ -1,16 +1,19 @@
 import { Actions } from 'vuex-smart-module';
+import Vue from 'vue';
 
 import MainMutations from './MainMutations';
 import MainGetters from './MainGetters';
 import MainState from './MainState';
 
-import { UserResponse, User } from '../../webservices/models';
+import { UserResponse, User, ListUsers } from '../../webservices/models';
 
 import {
     getUsers,
     updateFavUsers,
     getFavUsers,
 } from '@/webservices/UsersWebservice';
+
+import i18n from '../../localization/localization';
 
 export default class MainActions extends Actions<
     MainState,
@@ -26,16 +29,40 @@ export default class MainActions extends Actions<
             const users: UserResponse = await getUsers(this.getters.query);
 
             this.commit('setUsers', users);
+
+            Vue.$toast.success(`${i18n.t('common.notifications.getUsers')}`, {
+                timeout: 4000,
+            });
+        } catch {
+            Vue.$toast.error(`${i18n.t('common.notifications.errorMessage')}`, {
+                timeout: 4000,
+            });
         } finally {
             this.commit('stopLoading', null);
         }
     }
 
-    public async updateApiFavUsers(): Promise<void> {
+    public async uploadApiFavUsers(nickname: string): Promise<void> {
         try {
             this.commit('startLoading', null);
 
-            await updateFavUsers(this.state.favUsers);
+            const users: ListUsers[] = await updateFavUsers({
+                nickname,
+                users: this.state.favUsers,
+            });
+
+            this.commit('setApiFavUser', users);
+
+            Vue.$toast.success(
+                `${i18n.t('common.notifications.uploadFavUsers')}`,
+                {
+                    timeout: 4000,
+                }
+            );
+        } catch {
+            Vue.$toast.error(`${i18n.t('common.notifications.errorMessage')}`, {
+                timeout: 4000,
+            });
         } finally {
             this.commit('stopLoading', null);
         }
@@ -45,9 +72,20 @@ export default class MainActions extends Actions<
         try {
             this.commit('startLoading', null);
 
-            const users: User[] = await getFavUsers();
+            const users: ListUsers[] = await getFavUsers();
 
             this.commit('setApiFavUser', users);
+
+            Vue.$toast.success(
+                `${i18n.t('common.notifications.getFavUsers')}`,
+                {
+                    timeout: 4000,
+                }
+            );
+        } catch {
+            Vue.$toast.error(`${i18n.t('common.notifications.errorMessage')}`, {
+                timeout: 4000,
+            });
         } finally {
             this.commit('stopLoading', null);
         }

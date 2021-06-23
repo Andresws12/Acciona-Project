@@ -2,7 +2,7 @@ import { Mutations } from 'vuex-smart-module';
 
 import MainState from './MainState';
 
-import { UserResponse, User } from '../../webservices/models';
+import { UserResponse, User, ListUsers } from '../../webservices/models';
 
 export default class MainMutations extends Mutations<MainState> {
     // User Mutations
@@ -26,8 +26,8 @@ export default class MainMutations extends Mutations<MainState> {
         this.state.currentUser = user;
     }
 
-    public setApiFavUser(user: User[]): void {
-        this.state.favApiUsers = user;
+    public setApiFavUser(users: ListUsers[]): void {
+        this.state.favApiUsers = users;
     }
 
     public addFavUser(user: User): void {

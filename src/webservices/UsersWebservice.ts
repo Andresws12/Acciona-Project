@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { apiPrefix, apiPrefixCustom, jsonHeaders } from './consts';
 
-import { UserResponse, User } from './models';
+import { UserResponse, ListUsers } from './models';
 
 const baseUrl: string = apiPrefix('/');
 
@@ -18,9 +18,9 @@ export const getUsers: (params: string) => Promise<UserResponse> = async (
     return response.data;
 };
 
-export const updateFavUsers: (params: User[]) => Promise<User[]> =
+export const updateFavUsers: (params: ListUsers) => Promise<ListUsers[]> =
     async params => {
-        const response = await axios.post<User[]>(
+        const response = await axios.post<ListUsers[]>(
             `${baseUrlCustom}/update-fav-users`,
             params,
             jsonHeaders
@@ -28,8 +28,8 @@ export const updateFavUsers: (params: User[]) => Promise<User[]> =
         return response.data;
     };
 
-export const getFavUsers: () => Promise<User[]> = async () => {
-    const response = await axios.get<User[]>(
+export const getFavUsers: () => Promise<ListUsers[]> = async () => {
+    const response = await axios.get<ListUsers[]>(
         `${baseUrlCustom}/fav-users`,
         jsonHeaders
     );

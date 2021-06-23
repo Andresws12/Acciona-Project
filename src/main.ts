@@ -16,10 +16,12 @@ library.add(fab, fas, far);
 
 import VueLayers from 'vuelayers';
 
+import 'vue-toastification/dist/index.css';
 import './styles/main.scss';
 
 import axios from 'axios';
 import Buefy from 'buefy';
+import Toast from 'vue-toastification';
 import i18n from '@/localization/localization';
 
 import './registerServiceWorker';
@@ -34,6 +36,9 @@ Vue.use(Router);
 Vue.use(Buefy, {
     defaultIconComponent: 'font-awesome-icon',
     defaultIconPack: 'fa',
+});
+Vue.use(Toast, {
+    position: 'bottom-left',
 });
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);

@@ -27,12 +27,14 @@
     "vue-i18n": "^8.24.5",
     "vue-property-decorator": "^9.1.2",
     "vue-router": "^3.2.0",
+    "vue-toastification": "^1.7.11",
     "vuelayers": "^0.11.36",
     "vuex": "^3.4.0",
     "vuex-persistedstate": "^4.0.0-beta.3",
     "vuex-smart-module": "^0.5.0"
   },
   "devDependencies": {
+    "@cypress/webpack-preprocessor": "^5.7.0",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -45,7 +47,6 @@
     "@vue/cli-service": "~4.5.0",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
-    "@cypress/webpack-preprocessor": "^5.7.0",
     "cypress": "7.2.0",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",

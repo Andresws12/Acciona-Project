@@ -14,6 +14,9 @@ const en = {
             donwloadConfirm: 'Do you want to download it?',
             userCsvName: 'Users',
             favUserCsvName: 'Fav users',
+            getApiUsers: 'Get API users',
+            nickname: 'Nickname',
+            uploadFavUserList: 'Upload fav user list',
         },
         currentUser: {
             position: 'Position: ',
@@ -38,6 +41,12 @@ const en = {
             en: 'English',
             translations: 'Translations',
             apiFavUserTable: 'API fav users',
+        },
+        notifications: {
+            errorMessage: 'An error has occurred',
+            uploadFavUsers: 'Fav user list uploaded',
+            getUsers: 'Users loaded',
+            getFavUsers: 'Fav user list loaded',
         },
     },
 };

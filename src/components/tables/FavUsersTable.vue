@@ -11,10 +11,24 @@
             :data="favUsersToDownload"
             :confirm="$t('views.userList.donwloadConfirm')"
         />
-        <b-button class="mr-3" type="is-link" @click="updateApiFavUsers">
-            Update users
+        <b-button class="mb-5" type="is-link" @click="getApiFavUsers">
+            {{ $t('views.userList.getApiUsers') }}
         </b-button>
-        <b-button type="is-link" @click="getApiFavUsers"> Get users </b-button>
+        <b-field>
+            <b-input
+                v-model="nickname"
+                :placeholder="$t('views.userList.nickname')"
+                type="search"
+            />
+            <p class="control">
+                <b-button
+                    type="is-link"
+                    :label="$t('views.userList.uploadFavUserList')"
+                    @click="uploadApiFavUsers"
+                    :disabled="nickname === ''"
+                />
+            </p>
+        </b-field>
         <b-table
             :data="favUsers"
             :per-page="10"
@@ -78,15 +92,18 @@ import { User } from '../../webservices/models';
 export default class FavUsersTable extends Vue {
     private mainStore = mainStore.context(this.$store);
 
+    private nickname: string = '';
+
     private get favUsers(): User[] {
         return this.mainStore.state.favUsers;
     }
+
     private get favUsersToDownload(): object[] {
         return this.mainStore.getters.favUsersToDownload;
     }
 
-    private updateApiFavUsers(): void {
-        this.mainStore.actions.updateApiFavUsers();
+    private uploadApiFavUsers(): void {
+        this.mainStore.actions.uploadApiFavUsers(this.nickname);
     }
     private getApiFavUsers(): void {
         this.mainStore.actions.getApiFavUsers();

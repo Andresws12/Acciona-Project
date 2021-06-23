@@ -37,6 +37,7 @@ const en = {
             es: 'Spanish',
             en: 'English',
             translations: 'Translations',
+            apiFavUserTable: 'API fav users',
         },
     },
 };

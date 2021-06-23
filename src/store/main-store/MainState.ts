@@ -8,6 +8,7 @@ export default class MainState {
     public userAgeQuery: number = 0;
     public currentUser: User;
     public favUsers: User[] = [];
+    public favApiUsers: User[] = [];
     public isLoading: boolean = false;
     public total: number = 100;
 }

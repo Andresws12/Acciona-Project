@@ -1,20 +1,6 @@
 <template>
     <div>
-        <h1 class="title">{{ $t('common.titles.favUserTable') }}</h1>
-        <vue-blob-json-csv
-            class="button is-link mb-5 mr-3"
-            fileType="csv"
-            tag-name="div"
-            :file-name="$t('views.userList.favUserCsvName')"
-            :title="$t('views.userList.donwloadTitle')"
-            v-if="favUsersToDownload.length > 0"
-            :data="favUsersToDownload"
-            :confirm="$t('views.userList.donwloadConfirm')"
-        />
-        <b-button class="mr-3" type="is-link" @click="updateApiFavUsers">
-            Update users
-        </b-button>
-        <b-button type="is-link" @click="getApiFavUsers"> Get users </b-button>
+        <h1 class="title">{{ $t('common.titles.apiFavUserTable') }}</h1>
         <b-table
             :data="favUsers"
             :per-page="10"
@@ -55,11 +41,6 @@
                     class="mr-2 is-clickable has-text-link"
                     icon="user"
                 />
-                <font-awesome-icon
-                    @click="addFavUser(props.row)"
-                    class="is-clickable has-text-danger"
-                    icon="trash-alt"
-                />
             </b-table-column>
         </b-table>
     </div>
@@ -73,28 +54,15 @@ import mainStore from '@/store/main-store/MainStore';
 import { User } from '../../webservices/models';
 
 @Component({
-    name: 'FavUsersTable',
+    name: 'ApiFavUsersTable',
 })
 export default class FavUsersTable extends Vue {
     private mainStore = mainStore.context(this.$store);
 
     private get favUsers(): User[] {
-        return this.mainStore.state.favUsers;
-    }
-    private get favUsersToDownload(): object[] {
-        return this.mainStore.getters.favUsersToDownload;
+        return this.mainStore.state.favApiUsers;
     }
 
-    private updateApiFavUsers(): void {
-        this.mainStore.actions.updateApiFavUsers();
-    }
-    private getApiFavUsers(): void {
-        this.mainStore.actions.getApiFavUsers();
-    }
-
-    private addFavUser(user: User): void {
-        this.mainStore.actions.updateFavUsers(user);
-    }
     private openUser(user: User): void {
         this.mainStore.actions.changeCurrentUser(user);
         this.$router.push({ name: 'User' });

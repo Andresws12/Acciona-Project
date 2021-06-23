@@ -6,7 +6,11 @@ import MainState from './MainState';
 
 import { UserResponse, User } from '../../webservices/models';
 
-import { getUsers } from '@/webservices/UsersWebservice';
+import {
+    getUsers,
+    updateFavUsers,
+    getFavUsers,
+} from '@/webservices/UsersWebservice';
 
 export default class MainActions extends Actions<
     MainState,
@@ -22,6 +26,28 @@ export default class MainActions extends Actions<
             const users: UserResponse = await getUsers(this.getters.query);
 
             this.commit('setUsers', users);
+        } finally {
+            this.commit('stopLoading', null);
+        }
+    }
+
+    public async updateApiFavUsers(): Promise<void> {
+        try {
+            this.commit('startLoading', null);
+
+            await updateFavUsers(this.state.favUsers);
+        } finally {
+            this.commit('stopLoading', null);
+        }
+    }
+
+    public async getApiFavUsers(): Promise<void> {
+        try {
+            this.commit('startLoading', null);
+
+            const users: User[] = await getFavUsers();
+
+            this.commit('setApiFavUser', users);
         } finally {
             this.commit('stopLoading', null);
         }

@@ -26,6 +26,10 @@ export default class MainMutations extends Mutations<MainState> {
         this.state.currentUser = user;
     }
 
+    public setApiFavUser(user: User[]): void {
+        this.state.favApiUsers = user;
+    }
+
     public addFavUser(user: User): void {
         this.state.favUsers.push(user);
     }

@@ -37,6 +37,7 @@ const es = {
             es: 'Español',
             en: 'Inglés',
             translations: 'Traducciones',
+            apiFavUserTable: 'Usuarios API favoritos',
         },
     },
 };

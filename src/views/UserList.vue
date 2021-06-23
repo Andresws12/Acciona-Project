@@ -3,6 +3,7 @@
         <div class="container">
             <users-table />
             <fav-users-table />
+            <api-fav-users-table />
         </div>
     </section>
 </template>
@@ -12,12 +13,14 @@ import { Component, Vue } from 'vue-property-decorator';
 
 import UsersTable from '@/components/tables/UsersTable.vue';
 import FavUsersTable from '@/components/tables/FavUsersTable.vue';
+import ApiFavUsersTable from '@/components/tables/ApiFavUsersTable.vue';
 
 @Component({
     name: 'UserList',
     components: {
         UsersTable,
         FavUsersTable,
+        ApiFavUsersTable,
     },
 })
 export default class UserList extends Vue {}

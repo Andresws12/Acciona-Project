@@ -1,7 +1,7 @@
 <template>
     <section class="section">
         <div class="container">
-            <div class="card">
+            <div class="card" v-if="currentUser">
                 <div class="card-image">
                     <div style="width: 100%">
                         <vl-map
@@ -106,6 +106,11 @@
                     </div>
                 </div>
             </div>
+            <div v-else class="card p-5">
+                <h1 class="subtitle">
+                    {{ $t('views.currentUser.noUserTitle') }}
+                </h1>
+            </div>
         </div>
     </section>
 </template>
@@ -124,14 +129,18 @@ export default class CurrentUser extends Vue {
     private mainStore = mainStore.context(this.$store);
 
     private center: number[] = [0, 0];
-    private centerCoordinate: number[] = [
-        Number(this.currentUser.location.coordinates.longitude),
-        Number(this.currentUser.location.coordinates.latitude),
-    ];
     private zoom: number = 5;
     private rotation: number = 0;
 
-    private get currentUser(): User {
+    private get centerCoordinate(): number[] | null {
+        return this.currentUser
+            ? [
+                  Number(this.currentUser.location.coordinates.longitude),
+                  Number(this.currentUser.location.coordinates.latitude),
+              ]
+            : null;
+    }
+    private get currentUser(): User | null {
         return this.mainStore.state.currentUser;
     }
     private get favUsers(): User[] {

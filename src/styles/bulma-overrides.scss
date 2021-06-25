@@ -1,0 +1,30 @@
+// Navbar
+.navbar-start{
+    margin-left: 1rem;
+}
+
+.navbar-end{
+    margin-right: 1rem;
+}
+
+.is-active{
+    .navbar-link{
+        color: $primary !important;
+    }
+    .navbar-link:not(.is-arrowless) {
+        &::after{
+            color: $primary !important;
+            border-color: $primary !important;
+        }
+    }
+}
+.navbar-link:hover {
+    &::after{
+        color: $primary !important;
+        border-color: $primary !important;
+    }
+}
+
+.navbar-item.is-active{
+    background-color: #fff!important;
+}

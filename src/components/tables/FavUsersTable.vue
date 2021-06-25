@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="card p-5 mb-6">
         <h1 class="title">{{ $t('common.titles.favUserTable') }}</h1>
         <vue-blob-json-csv
             class="button is-link mb-5 mr-3"
@@ -25,7 +25,7 @@
                     type="is-link"
                     :label="$t('views.userList.uploadFavUserList')"
                     @click="uploadApiFavUsers"
-                    :disabled="nickname === ''"
+                    :disabled="nickname === '' || favUsers.length === 0"
                 />
             </p>
         </b-field>

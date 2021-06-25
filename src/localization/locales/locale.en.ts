@@ -17,6 +17,7 @@ const en = {
             getApiUsers: 'Get API users',
             nickname: 'Nickname',
             uploadFavUserList: 'Upload fav user list',
+            noUserTitle: 'Please load data from the api',
         },
         currentUser: {
             position: 'Position: ',
@@ -29,6 +30,7 @@ const en = {
             phone: 'Phone: ',
             actions: 'Action: ',
             address: 'Address: ',
+            noUserTitle: 'Please, select a user from the table',
         },
     },
     common: {

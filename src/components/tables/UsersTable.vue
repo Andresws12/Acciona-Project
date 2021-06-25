@@ -1,5 +1,5 @@
 <template>
-    <div class="mb-6">
+    <div class="mb-6 card p-5">
         <h1 class="title">{{ $t('common.titles.userTable') }}</h1>
         <vue-blob-json-csv
             class="button is-link mb-5"
@@ -19,14 +19,16 @@
             :mobile-cards="false"
             paginated
         >
-            <b-table-column :label="$t('views.userList.age')">
-                <template v-slot:subheading>
+            <b-table-column
+                :label="$t('views.userList.age')"
+                searchable
+                field="dob.age"
+            >
+                <template #searchable="props">
                     <b-input
-                        v-model="age"
+                        v-model="props.filters[props.column.field]"
                         type="number"
-                        @input="onChangeAge()"
-                    ></b-input>
-                    <div data-cy="user-table"></div>
+                    />
                 </template>
                 <template v-slot="props">
                     {{ props.row.dob.age }}
@@ -35,8 +37,8 @@
             <b-table-column :label="$t('views.userList.name')" v-slot="props">
                 {{ props.row.name.first }}
             </b-table-column>
-            <b-table-column :label="$t('views.userList.gender')">
-                <template v-slot:subheading>
+            <b-table-column :label="$t('views.userList.gender')" searchable>
+                <template #searchable>
                     <b-select
                         placeholder="Select a name"
                         v-model="gender"
@@ -55,8 +57,8 @@
                     {{ props.row.gender }}
                 </template>
             </b-table-column>
-            <b-table-column :label="$t('views.userList.country')">
-                <template v-slot:subheading>
+            <b-table-column :label="$t('views.userList.country')" searchable>
+                <template #searchable>
                     <b-select
                         placeholder="Select a name"
                         v-model="nationality"

@@ -1,27 +1,38 @@
 <template>
     <b-navbar data-cy="top-navbar">
         <template #start>
-            <b-navbar-item tag="router-link" to="/">
-                {{ $t('common.titles.home') }}
+            <b-navbar-item
+                tag="router-link"
+                to="/"
+                :active="$route.path === '/'"
+            >
+                <font-awesome-icon icon="home" />
             </b-navbar-item>
-            <b-navbar-item tag="router-link" to="/user">
-                {{ $t('common.titles.user') }}
+            <b-navbar-item
+                tag="router-link"
+                to="/user"
+                :active="$route.path === '/user'"
+            >
+                <font-awesome-icon icon="user" />
             </b-navbar-item>
         </template>
 
         <template #end>
-            <b-navbar-dropdown :label="$t('common.titles.translations')">
+            <b-navbar-dropdown>
+                <template #label>
+                    <font-awesome-icon icon="language" />
+                </template>
                 <b-navbar-item
-                    :disabled="currentLanguage === 'es'"
                     aria-role="listitem"
                     @click="changeLanguageToSpanish"
+                    :active="currentLanguage === 'es'"
                 >
                     {{ $t('common.titles.es') }}
                 </b-navbar-item>
                 <b-navbar-item
-                    :disabled="currentLanguage === 'en'"
                     aria-role="listitem"
                     @click="changeLanguageToEnglish"
+                    :active="currentLanguage === 'en'"
                 >
                     {{ $t('common.titles.en') }}
                 </b-navbar-item>

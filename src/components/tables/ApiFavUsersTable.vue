@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="card p-5">
         <h1 class="title">{{ $t('common.titles.apiFavUserTable') }}</h1>
         <div v-if="favUsers.length > 0">
             <div v-for="(user, index) in favUsers" :key="index">
@@ -56,7 +56,11 @@
                         />
                     </b-table-column>
                 </b-table>
+                <hr />
             </div>
+        </div>
+        <div v-else>
+            {{ $t('views.userList.noUserTitle') }}
         </div>
     </div>
 </template>

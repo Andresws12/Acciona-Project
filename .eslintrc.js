@@ -21,6 +21,7 @@ module.exports = {
         'no-use-before-define': 'off', // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md
         '@typescript-eslint/no-use-before-define': ['error'],
         '@typescript-eslint/ban-types': 'off',
+        '@typescript-eslint/no-non-null-assertion': 'off',
     },
     plugins: ['@typescript-eslint'],
     parserOptions: {

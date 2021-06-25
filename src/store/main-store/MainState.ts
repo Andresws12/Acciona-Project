@@ -10,5 +10,5 @@ export default class MainState {
     public favApiUsers: ListUsers[] = [];
     public favUsers: User[] = [];
     public total: number = 100;
-    public currentUser: User;
+    public currentUser: User | null = null;
 }

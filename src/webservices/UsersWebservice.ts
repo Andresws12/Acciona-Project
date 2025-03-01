@@ -18,15 +18,16 @@ export const getUsers: (params: string) => Promise<UserResponse> = async (
     return response.data;
 };
 
-export const updateFavUsers: (params: ListUsers) => Promise<ListUsers[]> =
-    async params => {
-        const response = await axios.post<ListUsers[]>(
-            `${baseUrlCustom}/update-fav-users`,
-            params,
-            jsonHeaders
-        );
-        return response.data;
-    };
+export const updateFavUsers: (
+    params: ListUsers
+) => Promise<ListUsers[]> = async params => {
+    const response = await axios.post<ListUsers[]>(
+        `${baseUrlCustom}/update-fav-users`,
+        params,
+        jsonHeaders
+    );
+    return response.data;
+};
 
 export const getFavUsers: () => Promise<ListUsers[]> = async () => {
     const response = await axios.get<ListUsers[]>(

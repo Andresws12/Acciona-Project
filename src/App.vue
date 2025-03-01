@@ -2,6 +2,7 @@
     <div>
         <top-navbar />
         <router-view />
+        <github-button />
     </div>
 </template>
 
@@ -13,11 +14,13 @@ import Axios from 'axios';
 import mainStore from '@/store/main-store/MainStore';
 
 import TopNavbar from '@/components/navbar/TopNavbar.vue';
+import GithubButton from '@/components/GithubButton.vue';
 
 @Component({
     name: 'App',
     components: {
         TopNavbar,
+        GithubButton,
     },
 })
 export default class App extends Vue {

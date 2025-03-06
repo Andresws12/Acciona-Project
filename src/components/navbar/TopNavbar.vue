@@ -2,7 +2,7 @@
     <b-navbar data-cy="top-navbar" fixed-top>
         <template #brand>
             <b-navbar-item tag="router-link" :to="{ path: '/' }">
-                <img src="../../assets/accionalogo.svg" alt="Acciona logo" />
+                <img src="../../assets/logo.webp" alt="Acciona logo" />
             </b-navbar-item>
         </template>
 
